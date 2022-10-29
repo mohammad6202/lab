@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:lab/info.dart';
 import 'package:lab/signup.dart';
 
 import 'firebase_options.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         Home.screenRoute: (context) => Home(),
         Login_screen.screenRoute: ((context) => Login_screen()),
         SignUpPage.screenRoute: ((context) => SignUpPage()),
+        Information.screenRoute: ((context) => Information()),
       },
       home: handleAuthState(),
     );

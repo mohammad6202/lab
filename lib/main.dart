@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:lab/signup.dart';
 
 import 'firebase_options.dart';
 import 'home.dart';
@@ -18,6 +19,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      routes: {
+        Home.screenRoute: (context) => Home(),
+        Login_screen.screenRoute: ((context) => Login_screen()),
+        SignUpPage.screenRoute: ((context) => SignUpPage()),
+      },
       home: handleAuthState(),
     );
   }

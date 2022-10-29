@@ -1,16 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:lab/home.dart';
-import 'package:lab/signup.dart';
+import 'package:lab/logn_page.dart';
 
-class Login_screen extends StatefulWidget {
-  const Login_screen({super.key});
-  static const String screenRoute = "Login_screen";
+import 'home.dart';
+
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
+  static const String screenRoute = "SignUpPage";
   @override
-  State<Login_screen> createState() => _Login_screenState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _Login_screenState extends State<Login_screen> {
+class _SignUpPageState extends State<SignUpPage> {
   TextEditingController? nameController = TextEditingController();
   TextEditingController? passwordController = TextEditingController();
   @override
@@ -30,7 +31,7 @@ class _Login_screenState extends State<Login_screen> {
                       alignment: Alignment.center,
                       padding: const EdgeInsets.all(10),
                       child: const Text(
-                        'Sign in',
+                        'Sign Up',
                         style: TextStyle(
                             fontSize: 30,
                             color: Color(0xffe46b10),
@@ -60,17 +61,6 @@ class _Login_screenState extends State<Login_screen> {
                       ),
                     ),
                   ),
-                  TextButton(
-                    onPressed: () async {
-                      //forgot password screen
-                    },
-                    child: const Text(
-                      'Forgot Password',
-                      style: TextStyle(
-                          color: Color(0xffe46b10),
-                          fontStyle: FontStyle.italic),
-                    ),
-                  ),
                   Container(
                     height: 50,
                     width: 250,
@@ -84,11 +74,11 @@ class _Login_screenState extends State<Login_screen> {
                           var authenticationobject = FirebaseAuth.instance;
 
                           UserCredential myUser = await authenticationobject
-                              .signInWithEmailAndPassword(
+                              .createUserWithEmailAndPassword(
                                   email: nameController!.text.trim(),
                                   password: passwordController!.text.trim());
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text("login successfully")));
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text("user added successfully")));
                           if (myUser != null) {
                             Navigator.pushNamed(context, Home.screenRoute);
                           }
@@ -114,16 +104,16 @@ class _Login_screenState extends State<Login_screen> {
                   ),
                   Row(
                     children: <Widget>[
-                      const Text('Does not have account?'),
+                      const Text('already have account?'),
                       TextButton(
                         child: const Text(
-                          'Sign up',
+                          'Sign in',
                           style: TextStyle(fontSize: 20),
                         ),
                         onPressed: () {
                           Navigator.push(context, MaterialPageRoute(
                             builder: (context) {
-                              return SignUpPage();
+                              return Login_screen();
                             },
                           ));
                         },
